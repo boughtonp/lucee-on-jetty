@@ -1,0 +1,26 @@
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+
+	<!--
+		# ROOT.xml
+
+		This file configures a webapp context named "ROOT", which responds on
+		localhost for the port Jetty is running on (see lucee-base/start.ini).
+
+		Additional contexts can be added by creating further XML files. See the
+		readme.md in this directory for details, or check Jetty's documentation.
+	-->
+
+	<Set name="overrideDescriptor"><SystemProperty name="jetty.base" default="."/>/etc/lucee-servlets.xml</Set>
+
+	<Set name="resourceBase"><SystemProperty name="jetty.base" default="."/>/webapps/ROOT/</Set>
+
+	<Set name="virtualHosts">
+		<Array type="String">
+			<Item>localhost</Item>
+			<Item>127.0.0.1</Item>
+		</Array>
+	</Set>
+
+</Configure>
