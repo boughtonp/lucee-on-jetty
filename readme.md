@@ -14,7 +14,7 @@ modify the Jetty files.
 
 The project's homepage, including links to download the bundles, is at:
 
-  http://sorcerersisle.com/projects:lucee-on-jetty
+> http://sorcerersisle.com/projects:lucee-on-jetty
 
 
 How to build
@@ -22,11 +22,11 @@ How to build
 
 The build directory contains a bash build script, but the basic process is:
 
-  1) cp src -> {target}
-  2) unzip jetty-X.zip -> {target}/jetty-home
-  3) unzip lucee-jars.zip -> {target}/lucee-base/lib/ext/
-  4) update versions in {target}/README.TXT
-  5) zip {target} lucee-on-jetty.zip
+  1. cp src -> {target}
+  2. unzip jetty-X.zip -> {target}/jetty-home
+  3. unzip lucee-jars.zip -> {target}/lucee-base/lib/ext/
+  4. update versions in {target}/README.TXT
+  5. zip {target} lucee-on-jetty.zip
 
 That's all there is to it.
 
