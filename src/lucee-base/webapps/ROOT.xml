@@ -12,8 +12,6 @@
 		readme.md in this directory for details, or check Jetty's documentation.
 	-->
 
-	<Set name="overrideDescriptor"><SystemProperty name="jetty.base" default="."/>/etc/lucee-servlets.xml</Set>
-
 	<Set name="resourceBase"><SystemProperty name="jetty.base" default="."/>/webapps/ROOT/</Set>
 
 	<Set name="virtualHosts">
