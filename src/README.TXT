@@ -10,7 +10,7 @@ start-server script and you have a server running Lucee.
 
 The file structure uses Jetty's home/base directory split - this means:
 * The directory jetty-home is an unmodified copy of the latest Jetty release.
-* The directory lucee-base contains Lucee JARs and configuration.
+* The directory lucee-base contains the Lucee JAR and configuration.
 (See readme file in lucee-base for further details.)
 
 This bundle was created from the template at:
@@ -57,7 +57,7 @@ Lucee v{LUCEE_VERSION}
 * Website: http://lucee.org
 * Source: https://bitbucket.org/lucee/lucee
 * License: LGPLv2
-* Files: lucee-base/lib/ext/*
+* Files: lucee-base/modules/lucee/lib/lucee*.jar
 
 
 
@@ -66,7 +66,7 @@ FAQ
 
 > What port does it run on?
 
-The HTTP server will run on the port specified by the `jetty.port` setting in
+The HTTP server will run on the port specified by the `jetty.http.port` setting in
 the lucee-base/start.ini config file, and uses the Jetty default of 8080. It can
 be changed to any available port. Note that changes to start.ini require a Jetty
 restart to be picked up.
@@ -104,13 +104,14 @@ Download a new Jetty distribution and replace the jetty-home directory with it.
 > How is Lucee upgraded?
 
 Use Lucee's own upgrade functionality (i.e. via admin, or an lco patch file).
-For major upgrades, replace lucee-base/lib/ext with a new Lucee JAR download.
+For major upgrades, replace the JAR in lucee-base/modules/lucee/lib/ with a
+new Lucee JAR download.
 
 > I have a question not answered here?
 
-Check the documentation wiki:
-  https://github.com/boughtonp/lucee-on-jetty/wiki
-  
+Check the documentation:
+  https://docs.sorcerersisle.com/luje
+
 If the answer is not there, raise an issue:
 	https://github.com/boughtonp/lucee-on-jetty/issues
 

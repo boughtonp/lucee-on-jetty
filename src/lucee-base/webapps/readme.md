@@ -8,12 +8,6 @@ This webapps directory is where Jetty WebApp Contexts are located.
 There is one context by default - ROOT.xml - which listens on localhost and has
 its resourceBase (webroot) set to the lucee-base/webapps/ROOT directory.
 
-These context XML config files work as per Jetty documentation, with the
-addendum that invoking Lucee means including the lucee-servlets.xml
-configuration via the overrideDescriptor setting:
-
-	<Set name="overrideDescriptor"><SystemProperty name="jetty.base" default="."/>/etc/lucee-servlets.xml</Set>
-
 
 ## Adding a new context
 

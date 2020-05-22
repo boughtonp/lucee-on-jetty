@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+	<Call name="insertHandler">
+		<Arg>
+			<New class="org.eclipse.jetty.rewrite.handler.RewriteHandler">
+				<Set name="originalPathAttribute">requestedPath</Set>
+				<Set name="rewriteRequestURI">true</Set>
+				<Set name="rules">
+					<Array type="org.eclipse.jetty.rewrite.handler.Rule">
+						<Item>
+							<New class="org.eclipse.jetty.rewrite.handler.VirtualHostRuleContainer">
+								<!--
+									Rewrite {anyscript}.cfm/path_info URLs to {anyscript}.cfm so it is
+									matched by Lucee's servlet mapping.	(Lucee populates cgi.path_info
+									from Jetty's requestedPath, which holds the original Request URI.)
+								-->
+								<Call name="addRule">
+									<Arg>
+										<New class="org.eclipse.jetty.rewrite.handler.RewriteRegexRule">
+											<Set name="regex">(.*?\.(?:cfm|lucee))/.*</Set>
+											<Set name="replacement">$1</Set>
+										</New>
+									</Arg>
+								</Call>
+							</New>
+						</Item>
+					</Array>
+				</Set>
+			</New>
+		</Arg>
+	</Call>
+
+</Configure>

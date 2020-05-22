@@ -12,7 +12,7 @@ if [ -z $JettyFile ]; then
 fi
 
 if [ -z $LuceeFile ]; then
-	echo "Specify --lucee=/path/to/lucee-jars.zip"
+	echo "Specify --lucee=/path/to/lucee.jar"
 	Errors=1
 fi
 
@@ -54,17 +54,18 @@ fi
 mv jetty-distribution-* jetty-home
 
 echo "3/5 Extracing $LuceeFile"
-unzip -q $LuceeFile -d lucee-base/lib/ext/  
+cp $LuceeFile lucee-base/modules/lucee/lib/
+rm lucee-base/modules/lucee/lib/lucee_jar_goes_here
 
 JettyVersion=`echo $JettyFile | perl -ne 'print $_ =~ /jetty-distribution-([\d.]*)(?:(\.M\d)|\.v\d+)\.(?:zip|tgz|tar\.gz)$/'`
-LuceeVersion=`echo $LuceeFile | perl -ne 'print $_ =~ /lucee-([\d.]*)-jars\.(?:zip|tgz|tar\.gz)$/'`
+LuceeVersion=`echo $LuceeFile | perl -ne 'print $_ =~ /lucee-([\d.]*).jar$/'`
 echo "4/5 Setting versions [$JettyVersion] and [$LuceeVersion]"
 sed s/{JETTY_VERSION}/$JettyVersion/g < README.TXT > README.TMP
 sed s/{LUCEE_VERSION}/$LuceeVersion/g < README.TMP > README.TXT
 rm README.TMP
 
 echo "5/5 Creating dist/$WorkingDir.tgz"
-mkdir -p ../../dist 
+mkdir -p ../../dist
 tar -czf ../../dist/$WorkingDir.tgz *
 cd ..
 rm -r $WorkingDir

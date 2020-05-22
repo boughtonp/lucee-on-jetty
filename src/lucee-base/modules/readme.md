@@ -10,4 +10,5 @@ You can read more about modules in the Jetty documentation:
   http://www.eclipse.org/jetty/documentation/current/startup-modules.html
 
 The **lucee.mod** file defines a Lucee module consisting of the other modules
-Lucee requires to run, plus a reference to the Lucee JAR.
+Lucee requires to run, referencing the Lucee JAR and Jetty configuration
+located within the lucee directory.
