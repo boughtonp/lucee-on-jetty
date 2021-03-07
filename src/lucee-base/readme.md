@@ -28,6 +28,8 @@ For more specific information, check for a readme in the relevant directory.
 	   ~ etc     - Jetty configuration overrides.
 	     ~ lucee-servlets.xml - Lucee CFML Servlet configuration.
 	     ~ rewrite-rules.xml - Jetty URL rewrite rules.
+	     ~ lucee-webapp-common.xml - common configuration for lucee webapp contexts.
+	     ~ lucee-global-webapp-common.xml - applies common configuration to all contexts.
 	resources    - Jetty resource files.
 	 ~ jetty-logging.properties - Jetty logging configuration
 	webapps      - Jetty looks for webapp contexts here.
@@ -38,9 +40,10 @@ For more specific information, check for a readme in the relevant directory.
 ## Jetty configuration
 
 * The `start.ini` file lists the relevant built-in modules plus `modules/lucee.mod`
-* The `modules/lucee/etc/rewrite-rules.xml` file is loaded by start.ini and rewrites *.cfm to enable path info.
-* The `modules/lucee/etc/lucee-servlets.xml` file is loaded via the overrideDescriptor setting
-in a webapp XML config file, and maps *.cfm and *.cfc to Lucee's CFMLServlet.
+* The `modules/lucee.mod` file then loads `rewrite-rules.xml` and `lucee-global-webapp-common.xml`
+* The `modules/lucee/etc/rewrite-rules.xml` file rewrites *.cfm to enable path info.
+* The `modules/lucee/etc/lucee-global-webapp-common.xml` file uses an overrideDescriptor in `lucee-webapp-common.xml` to load `lucee-servlets.xml` for every context.
+* The `modules/lucee/etc/lucee-servlets.xml` file maps *.cfm and *.cfc to Lucee's CFMLServlet.
 
 
 ## Lucee configuration
