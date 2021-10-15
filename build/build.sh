@@ -51,15 +51,23 @@ then
 else
 	tar -xzf $JettyFile
 fi
-mv jetty-distribution-* jetty-home
+shopt -s nullglob
+mv jetty-{home,distribution}-* jetty-home
+if [ ! -d jetty-home ]; then
+	echo "Error: Jetty file [$JettyFile] did not provide expected jetty-home-{version} or jetty-distribution-{version} directory."
+	echo "Aborting..."
+	exit
+fi
 
 echo "3/5 Extracing $LuceeFile"
 cp $LuceeFile lucee-base/modules/lucee/lib/
 rm lucee-base/modules/lucee/lib/lucee_jar_goes_here
 
-JettyVersion=`echo $JettyFile | perl -ne 'print $_ =~ /jetty-distribution-([\d.]*)(?:(\.M\d)|\.v\d+)\.(?:zip|tgz|tar\.gz)$/'`
-LuceeVersion=`echo $LuceeFile | perl -ne 'print $_ =~ /lucee-([\d.]*).jar$/'`
+JettyVersion=`echo $JettyFile | perl -ne 'print $_ =~ /jetty-(?:distribution|home)-([\d.]*)(?:(\.M\d)|\.v\d+)\.(?:zip|tgz|tar\.gz)$/'`
+LuceeVersion=`echo $LuceeFile | perl -ne 'print $_ =~ /lucee-(?:light-)?([\d.]*).jar$/'`
 echo "4/5 Setting versions [$JettyVersion] and [$LuceeVersion]"
+[ -z "$JettyVersion" ] && echo "WARNING: failed to read version from filename [$JettyFile]"
+[ -z "$LuceeVersion" ] && echo "WARNING: failed to read version from filename [$LuceeFile]"
 sed s/{JETTY_VERSION}/$JettyVersion/g < README.TXT > README.TMP
 sed s/{LUCEE_VERSION}/$LuceeVersion/g < README.TMP > README.TXT
 rm README.TMP
