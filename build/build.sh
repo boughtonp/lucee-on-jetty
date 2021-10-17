@@ -42,14 +42,13 @@ function showHelp ()
 		  Options marked (+) can be specified multiple times for additional files.
 
 		Examples:
-		  You must specify at least jetty-home, lucee jar, and lucee.jetty-module:
-		    $0 --jetty=jetty-home-9.4.44.v20210927.zip --lucee=lucee-5.3.8.206.jar --module=../lucee.jetty-module/lucee.mod
+		  You must specify at least jetty-home and lucee jar:
+		    $0 --jetty=jetty-home-9.4.44.v20210927.zip --lucee=lucee-5.3.8.206.jar
 
 		  When numerous options are present, escaping newlines can assist readability:
 		    $0 \\
 		     --jetty=jetty-home-9.4.44.v20210927.zip \\
 		     --lucee=lucee-light-5.3.8.206.jar \\
-		     --module=../lucee.jetty-module/lucee.mod \\
 		     --extension=../ext/lucee.admin.extension-1.0.0.3.lex \\
 		     --extension=../ext/lucee.doc.extension-1.0.0.2.lex \\
 		     --output=../out/luje_9444_538.zip
@@ -84,7 +83,7 @@ function setupDefaults ()
 	JettyFile=
 	LuceeFile=
 	OutputFile="${BuildDir}/${BuildId}.tar"
-	declare -ga ModuleFiles
+	ModuleFiles=("$MainDir/lucee.jetty-module/lucee.mod")
 	declare -ga ExtensionFiles
 }
 
