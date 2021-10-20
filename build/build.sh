@@ -201,6 +201,8 @@ function createBundle ()
 	printInfo "1/7 Copy template files "
 	cp -r "$SourceDir"/* ./ && printVerbose "    Copied [$SourceDir]"
 
+	mkdir -p "lucee-base/logs" && printVerbose "    Created [lucee-base/logs]"
+
 
 	## 2 - jetty-home ##
 
