@@ -5,7 +5,7 @@
 @ECHO.
 
 PUSHD "%~dp0%lucee-base"
-@ECHO In lucee-base directory [%cd%]
+@ECHO In directory [%cd%]
 
 @ECHO "Starting Jetty... (Use Ctrl-C to shutdown server.)"
 @ECHO.
