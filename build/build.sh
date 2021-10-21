@@ -222,6 +222,8 @@ function createBundle ()
 		exit 1
 	fi
 
+	chmod -R +w jetty-home
+
 
 	## 3 - jetty modules ##
 
