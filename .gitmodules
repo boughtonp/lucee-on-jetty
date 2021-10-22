@@ -1,0 +1,3 @@
+[submodule "lucee.jetty-module"]
+	path = lucee.jetty-module
+	url = https://code.sorcerersisle.com/lucee.jetty-module.git
